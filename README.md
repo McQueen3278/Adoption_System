@@ -114,13 +114,13 @@ JWT_SECRET=<tu_secreto_jwt>
 Las siguientes funcionalidades necesitan ser desarrolladas:
 
 1. **Actualizar Foto del Usuario**
-   - Descripción: Implementar funcionalidad para actualizar la foto de perfil del usuario.
+   Se realizo y no funciono
 
 2. **Listar Citas**
-   - Descripción: Implementar funcionalidad para listar todas las citas de un usuario.
+  Se realizo y funciona
 
 3. **Actualizar Cita**
-   - Descripción: Implementar funcionalidad para actualizar una cita existente.
+  Se realizo y no funciono
 
 4. **Cancelar Cita**
    - Descripción: Implementar funcionalidad para cancelar una cita existente.
