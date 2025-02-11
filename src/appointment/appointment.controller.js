@@ -103,3 +103,22 @@ export const updateAppointemnt = async (req, res) => {
         });
     }
 }
+
+export const cancellAppointment = async (req, res) => {
+  try{
+      const { uid } = req.params
+
+      await Appointment.findByIdAndUpdate(uid, {status: "CANCELLED"}, {new: true})
+
+      return res.status(200).json({
+          success: true,
+          message: "Cita cancelada",
+      })
+  }catch(err){
+      return res.status(500).json({
+          success: false,
+          message: "Error al cancelar la cita",
+          error: err.message
+      })
+  }
+}

@@ -128,26 +128,40 @@ export const updateUser = async (req, res) => {
     }
 }
 
+
+
 export const updateProfilePicture = async (req, res) => {
     try{
-        const { uid } = req.params;
-        const data =  req.file;
-        
-        let profilePicture = req.file ? req.file.filename : null;
-        data.profilePicture = profilePicture
-        
-        const user = await User.findByIdAndUpdate(uid, data, {profilePicture: profilePicture}) 
+        const { uid } = req.params
+        let newProfilePicture = req.file ? req.file.filename : null
 
-        res.status(200).json({
+        if(!newProfilePicture){
+            return res.status(400).json({
+                success: false,
+                message: "No hay archivo en la petición"
+            })
+        }
+
+        const user = await User.findById(uid)
+
+        if(user.profilePicture){
+            const oldProfilePicture = join(__dirname, "../../public/uploads/profile-pictures", user.profilePicture)
+            await fs.unlink(oldProfilePicture)
+        }
+
+        user.profilePicture = newProfilePicture
+        await user.save()
+
+        return res.status(200).json({
             success: true,
-            msg: 'foto de perfil Actualizada',
-            user,
-        });
+            message: "Foto actualizada",
+            profilePicture: user.profilePicture,
+        })
     }catch(err){
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            msg: 'Error al actualizar la foto de perfil',
+            message: "Error al actualizar la foto",
             error: err.message
-        });
+        })
     }
 }

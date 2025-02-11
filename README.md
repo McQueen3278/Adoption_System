@@ -114,13 +114,28 @@ JWT_SECRET=<tu_secreto_jwt>
 Las siguientes funcionalidades necesitan ser desarrolladas:
 
 1. **Actualizar Foto del Usuario**
-   Se realizo y no funciono
-
+  **URL:** `/api/user/:pid`
+  **Método:** `PATCH`
+  **Cuerpo:**
+  ![alt text](image.png)
 2. **Listar Citas**
-  Se realizo y funciona
+  **URL:** `/api/appointment/:pid`
+   **Método:** `GET`
 
 3. **Actualizar Cita**
-  Se realizo y no funciono
+**URL:** `/api/appointment/:pid`
+  - **Método:** `PUT`
+  - **Cuerpo:**
+    ```json
+    {
+      "date": "string",
+      "status": "string",
+      "pet": "petId",
+      "user": "userId"
+    }
+    ```
 
 4. **Cancelar Cita**
-   - Descripción: Implementar funcionalidad para cancelar una cita existente.
+ **URL:** `/api/appointment/:pid`
+**Método:** `PATCH`
+solo se realiza la consulta no lleva cuerpo
